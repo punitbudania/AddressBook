@@ -32,6 +32,7 @@ public class AddressBook
 					delete();
 					break;
 				case 3:
+					edit();
 					break;
 				case 4:
 					display();
@@ -119,6 +120,18 @@ public class AddressBook
 		Mobile.remove(j);
 		Email.remove(j);
 		entry -= 1;
+	}
+	
+	public static void edit()
+	{
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter Name: ");
+		String over = input.next();
+		int k = Fname.indexOf(over);
+		System.out.println("Enter updated mobile no.: ");
+		long elem = input.nextLong();
+		Mobile.set(k, elem);
 	}
 }
 
