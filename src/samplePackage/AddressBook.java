@@ -29,6 +29,7 @@ public class AddressBook
 					addcontact();
 					break;
 				case 2:
+					delete();
 					break;
 				case 3:
 					break;
@@ -101,6 +102,23 @@ public class AddressBook
 			System.out.println("Phone no.: " + Mobile.get(i-1));
 			System.out.println("Email: " + Email.get(i-1));
 		}
+	}
+	
+	public static void delete()
+	{
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter Name: ");
+		String over = input.next();
+		int j = Fname.indexOf(over);
+		Fname.remove(j);
+		Lname.remove(j);
+		City.remove(j);
+		State.remove(j);
+		Zip.remove(j);
+		Mobile.remove(j);
+		Email.remove(j);
+		entry -= 1;
 	}
 }
 
