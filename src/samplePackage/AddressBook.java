@@ -1,6 +1,7 @@
 package samplePackage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -9,6 +10,8 @@ public class AddressBook
 	public static void main(String[] args)
 	{
 		System.out.println("Welcome To Address Book");
+		
+		
 		
 		boolean stop = false;
 		while(!stop)
@@ -20,6 +23,7 @@ public class AddressBook
 			System.out.println("Press 3 to Edit the contact");
 			System.out.println("Press 4 to View the entries");
 			System.out.println("Press 5 to exit");
+			System.out.println("Press 6 to add new Address Book");
 
 			int option = input.nextInt();
 				
@@ -41,11 +45,21 @@ public class AddressBook
 					System.out.println("Thank You!!");
 					stop = true;
 					break;
+				case 6:
+					addAddressBook();
+					break;
 				default:
 					System.out.println("invalid selection");
 			}	
 		}
 	}
+	
+	
+	public static void addAddressBook() 
+	{
+		System.out.println("Address Book added Successfully!");
+	}
+	
 	
 	static int entry = 0;
 	static ArrayList<String> Fname = new ArrayList<String>();
