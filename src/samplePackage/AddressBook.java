@@ -21,7 +21,9 @@ public class AddressBook
             System.out.println("Press 4 to View the entries");
             System.out.println("Press 5 to Search persons by State");
             System.out.println("Press 6 to Search persons by City");
-            System.out.println("Press 7 to exit");
+            System.out.println("Press 7 to count persons by State");
+            System.out.println("Press 8 to count persons by City");
+            System.out.println("Press 9 to exit");
 
             int option = input.nextInt();
 
@@ -99,6 +101,26 @@ public class AddressBook
                     System.out.println(ReqCPerson);
                     break;
                 case 7:
+                    sc = new Scanner(System.in);
+                    System.out.println("Enter State:");
+                    String countState = sc.next();
+                    long totalState = StatePerson.entrySet()
+                            .stream()
+                            .filter(e -> e.getKey()==countState)
+                            .count();
+                    System.out.println(totalState);
+                    break;
+                case 8:
+                    sc = new Scanner(System.in);
+                    System.out.println("Enter City:");
+                    String countCity = sc.next();
+                    long totalCity = CityPerson.entrySet()
+                            .stream()
+                            .filter(e -> e.getKey()==countCity)
+                            .count();
+                    System.out.println(totalCity);
+                    break;
+                case 9:
                     System.out.println("Thank You!!");
                     stop = true;
                     break;
