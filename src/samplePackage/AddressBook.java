@@ -23,7 +23,11 @@ public class AddressBook
             System.out.println("Press 6 to Search persons by City");
             System.out.println("Press 7 to count persons by State");
             System.out.println("Press 8 to count persons by City");
-            System.out.println("Press 9 to exit");
+            System.out.println("Press 9 to sort entries by Name");
+            System.out.println("Press 10 to sort entries by City");
+            System.out.println("Press 11 to sort entries by State");
+            System.out.println("Press 12 to sort entries by Zip");
+            System.out.println("Press 13 to exit");
 
             int option = input.nextInt();
 
@@ -80,23 +84,22 @@ public class AddressBook
                     sc = new Scanner(System.in);
                     System.out.println("Enter State:");
                     String selectState = sc.next();
-                    List<String> ReqPerson = new ArrayList<>();
-                    ReqPerson = StatePerson.entrySet()
+                    List<String> ReqSPerson;
+                    ReqSPerson = StatePerson.entrySet()
                             .stream()
-                            .filter(e -> e.getKey()==selectState)
+                            .filter(e -> e.getKey().equals(selectState))
                             .map(Map.Entry::getValue)
                             .collect(Collectors.toList());
-                    System.out.println(ReqPerson);
+                    System.out.println(ReqSPerson);
                     break;
                 case 6:
                     sc = new Scanner(System.in);
                     System.out.println("Enter City:");
                     String selectCity = sc.next();
-                    List<String> ReqCPerson = new ArrayList<>();
-                    ReqCPerson = CityPerson.entrySet()
-                            .stream()
-                            .filter(e -> e.getKey()==selectCity)
-                            .map(Map.Entry::getValue)
+                    List<String> ReqCPerson;
+                    ReqCPerson = CityPerson.entrySet().stream()
+                            .filter(e -> e.getValue().equals(selectCity))
+                            .map(Map.Entry::getKey)
                             .collect(Collectors.toList());
                     System.out.println(ReqCPerson);
                     break;
@@ -106,7 +109,7 @@ public class AddressBook
                     String countState = sc.next();
                     long totalState = StatePerson.entrySet()
                             .stream()
-                            .filter(e -> e.getKey()==countState)
+                            .filter(e -> e.getKey().equals(countState))
                             .count();
                     System.out.println(totalState);
                     break;
@@ -116,11 +119,21 @@ public class AddressBook
                     String countCity = sc.next();
                     long totalCity = CityPerson.entrySet()
                             .stream()
-                            .filter(e -> e.getKey()==countCity)
+                            .filter(e -> e.getKey().equals(countCity))
                             .count();
                     System.out.println(totalCity);
                     break;
                 case 9:
+                    List<String> NameSort;
+                    //NameSort =
+                    break;
+                case 10:
+                    break;
+                case 11:
+                    break;
+                case 12:
+                    break;
+                case 13:
                     System.out.println("Thank You!!");
                     stop = true;
                     break;
@@ -148,15 +161,6 @@ public class AddressBook
     {
         entry++;
         Scanner input = new Scanner(System.in);
-/*
-        System.out.println("Enter Address Book name:");
-        String addressbook = input.next();
-
-        System.out.println("Enter First Name:");
-        String firstname = input.next();
-        Fname.add(firstname);
-
- */
 
         System.out.println("Enter Last Name:");
         String lastname = input.next();
@@ -165,7 +169,7 @@ public class AddressBook
         System.out.println("Enter City:");
         String city = input.next();
         City.add(city);
-        CityPerson.put(city, Fname.get(entry-1));
+        CityPerson.put(Fname.get(entry-1), city);
 
         System.out.println("Enter State:");
         String state = input.next();
@@ -188,7 +192,8 @@ public class AddressBook
 
     public static void display()
     {
-        System.out.println(Adrsbook);
+        System.out.println(CityPerson);
+        System.out.println(StatePerson);
         for (int i=1; i<=entry; i++)
         {
             System.out.println("******************Entry No.: " + i);
