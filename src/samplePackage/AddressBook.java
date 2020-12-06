@@ -3,6 +3,8 @@ package samplePackage;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Map.Entry.comparingByValue;
+
 public class AddressBook
 {
     public static void main(String[] args)
@@ -53,21 +55,21 @@ public class AddressBook
                             else
                             {
                                 Fname.add(firstname);
-                                Adrsbook.put(addressbook, Fname);
+                                Adrsbook.put(addressbook, firstname);
                                 addcontact();
                             }
                         }
                         else
                         {
                             Fname.add(firstname);
-                            Adrsbook.put(addressbook, Fname);
+                            Adrsbook.put(addressbook, firstname);
                             addcontact();
                         }
                     }
                     else
                     {
                         Fname.add(firstname);
-                        Adrsbook.put(addressbook, Fname);
+                        Adrsbook.put(addressbook, firstname);
                         addcontact();
                     }
                     break;
@@ -124,12 +126,28 @@ public class AddressBook
                     System.out.println(totalCity);
                     break;
                 case 9:
-                    List<String> NameSort;
-                    //NameSort =
+                    List<String> sortedEntries;
+                    sortedEntries = Adrsbook.entrySet()
+                            .stream()
+                            .sorted(Map.Entry.comparingByValue())
+                            .map(Map.Entry::getValue)
+                            .collect(Collectors.toList());
+                    System.out.println(sortedEntries);
                     break;
                 case 10:
+                    CityPerson.entrySet()
+                            .stream()
+                            .sorted(Map.Entry.comparingByValue())
+                            .forEach(System.out::println);
                     break;
                 case 11:
+                    HashMap<String, String> z;
+                    z = StatePerson.entrySet()
+                            .stream()
+                            .sorted(Map.Entry.comparingByKey())
+                            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                    (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+                    System.out.println(z);
                     break;
                 case 12:
                     break;
@@ -146,7 +164,7 @@ public class AddressBook
 
 
     static int entry = 0;
-    static HashMap<String, ArrayList<String>> Adrsbook= new HashMap<String, ArrayList<String>>();
+    static HashMap<String, String> Adrsbook= new HashMap<String, String>();
     static HashMap<String, String> CityPerson = new HashMap<String, String>();
     static HashMap<String, String> StatePerson = new HashMap<String, String>();
     static ArrayList<String> Fname = new ArrayList<String>();
