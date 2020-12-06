@@ -3,7 +3,6 @@ package samplePackage;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Map.Entry.comparingByValue;
 
 public class AddressBook
 {
@@ -150,6 +149,10 @@ public class AddressBook
                     System.out.println(z);
                     break;
                 case 12:
+                    ZipPerson.entrySet()
+                            .stream()
+                            .sorted(Map.Entry.comparingByKey())
+                            .forEach(System.out::println);
                     break;
                 case 13:
                     System.out.println("Thank You!!");
@@ -167,6 +170,7 @@ public class AddressBook
     static HashMap<String, String> Adrsbook= new HashMap<String, String>();
     static HashMap<String, String> CityPerson = new HashMap<String, String>();
     static HashMap<String, String> StatePerson = new HashMap<String, String>();
+    static HashMap<Integer, String> ZipPerson = new HashMap<Integer, String>();
     static ArrayList<String> Fname = new ArrayList<String>();
     static ArrayList<String> Lname = new ArrayList<String>();
     static ArrayList<String> City = new ArrayList<String>();
@@ -197,6 +201,7 @@ public class AddressBook
         System.out.println("Enter Zip:");
         int zip = input.nextInt();
         Zip.add(zip);
+        ZipPerson.put(zip, Fname.get(entry-1));
 
         System.out.println("Enter Phone Number:");
         long phonenumber = input.nextLong();
